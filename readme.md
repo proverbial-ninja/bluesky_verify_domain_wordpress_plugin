@@ -2,8 +2,6 @@
 
 ## Description
 
-![Bluesky Domain Plugin Logo](logo.jpg)
-
 <img src="logo.jpg" alt="Bluesky Domain Plugin Logo" width="300" height="300">
 
 The **Verify Bluesky Domain** plugin allows you to easily verify your domain for Bluesky by adding a custom route that returns a user-defined DID (Decentralized Identifier) string. This verification process is required to associate your domain with your Bluesky account.
