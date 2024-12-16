@@ -40,7 +40,7 @@ After the plugin is configured, Bluesky will be able to verify your domain by ch
 
 ## License
 
-This plugin is licensed under the **GPL2** license.
+This plugin is licensed under the GPLv2 license.
 
 ## Author
 

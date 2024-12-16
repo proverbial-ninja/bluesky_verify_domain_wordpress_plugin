@@ -1,13 +1,15 @@
 <?php
 
-/**
+/*
  * Plugin Name: Verify Bluesky Domain
- * Description: Adds a route for /.well-known/atproto-did to return a user-defined DID string to enamble domain verification on Bluesky.
- * Version: 1.0
- * Author: Proverbial
- * Author URI: https://proverbial.online
- * License: GPL2
- * Text Domain: verify_bluesky_domain
+ * Plugin URI: https://github.com/proverbial-ninja/bluesky_verify_domain_wordpress_plugin
+ * Description: Allows users to easily verify their domain for Bluesky by adding a custom  route "yourdomain.com/.well-known/atproto-did" that returns a user-defined DID (Decentralized Identifier) string.
+ * Version: 1.0.0
+ * Author:            Proverbial
+ * Author URI:        https://proverbial.online/
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: verify-bluesky-domain
  */
 
 add_action('init', 'atproto_did_register_route');
@@ -39,7 +41,7 @@ function atproto_did_template_redirect()
         $user_did = get_option('atproto_user_did');
 
         header('Content-Type: text/plain');
-        echo $user_did ? $user_did : 'DID not set.';
+        echo esc_html($user_did ? $user_did : 'DID not set.');
         exit();
     }
 }
@@ -48,8 +50,8 @@ add_action('admin_menu', 'atproto_did_add_settings_page');
 function atproto_did_add_settings_page()
 {
     add_options_page(
-        'ATProto DID Settings',
-        'ATProto DID',
+        'Set Well-Known ATProto DID',
+        'Verify Bluesky Domain',
         'manage_options',
         'atproto-did',
         'atproto_did_settings_page',
@@ -60,7 +62,7 @@ function atproto_did_settings_page()
 {
 ?>
     <div class="wrap">
-        <h1>ATProto DID Settings</h1>
+        <h1>Set your Bluesky DID</h1>
         <form method="post" action="options.php">
             <?php
             settings_fields('atproto_did_options_group');
@@ -72,7 +74,7 @@ function atproto_did_settings_page()
                     <td>
                         <input type="text" id="atproto_user_did" name="atproto_user_did" value="<?php echo esc_attr(get_option('atproto_user_did')); ?>" class="regular-text" />
                         <p class="description">Enter the DID string that begins with "did:"</p>
-                        <p class="description">Click here to find out your did <a href="https://ilo.so/bluesky-did/">https://ilo.so/bluesky-did/</a></p>
+                        <p class="description">Click here to find out your did <a target="_blank" href="https://ilo.so/bluesky-did/">https://ilo.so/bluesky-did/</a></p>
                     </td>
                 </tr>
             </table>
